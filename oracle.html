@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oráculo Sagrado — Consciência Curativa</title>
+  <meta name="description" content="Selecione três cartas e receba sua orientação espiritual personalizada." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========================
+       RESET & VARIÁVEIS
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #C9A227;
+      --gold-light: #E8C84A;
+      --gold-dim:   #8a6c15;
+      --dark:       #0A0E27;
+      --dark-mid:   #0e1335;
+      --dark-card:  #111830;
+      --white:      #FFFFFF;
+      --off-white:  #F0EDE6;
+      --text-muted: #a09880;
+      --green-wa:   #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--dark);
+      color: var(--off-white);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ========================
+       ESTRELAS
+    ======================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 8% 12%, rgba(201,162,39,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 22% 38%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 7%, rgba(201,162,39,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 53% 72%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 18%, rgba(201,162,39,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 82% 52%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 87%, rgba(201,162,39,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 12% 82%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 62% 43%, rgba(201,162,39,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 33% 58%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 3% 47%, rgba(201,162,39,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 97% 28%, rgba(255,255,255,0.3) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.35; }
+      50%  { opacity: 0.9; }
+      100% { opacity: 0.45; }
+    }
+
+    /* ========================
+       NAVEGAÇÃO
+    ======================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,14,39,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,162,39,0.2);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .nav-back:hover { opacity: 1; }
+
+    /* ========================
+       CABEÇALHO DA PÁGINA
+    ======================== */
+    .oracle-header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 8rem 2rem 3rem;
+    }
+
+    .oracle-header .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .oracle-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 40px rgba(201,162,39,0.3);
+    }
+
+    .oracle-header h1 span { color: var(--gold); }
+
+    .oracle-header p {
+      font-size: 1rem;
+      color: rgba(240,237,230,0.7);
+      font-style: italic;
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ========================
+       CONTADOR DE SELEÇÃO
+    ======================== */
+    .selection-counter {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 0 2rem;
+    }
+
+    .counter-pip {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(201,162,39,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: all 0.4s;
+    }
+
+    .counter-pip.filled {
+      border-color: var(--gold);
+      background: rgba(201,162,39,0.15);
+      color: var(--gold);
+      box-shadow: 0 0 16px rgba(201,162,39,0.4);
+    }
+
+    .counter-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ========================
+       GRID DE CARTAS
+    ======================== */
+    .cards-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Carta individual */
+    .tarot-card {
+      aspect-ratio: 2/3;
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+      border: 1px solid rgba(201,162,39,0.15);
+      overflow: hidden;
+      background: var(--dark-card);
+    }
+
+    .tarot-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          rgba(201,162,39,0.03) 0px,
+          rgba(201,162,39,0.03) 1px,
+          transparent 1px,
+          transparent 10px
+        );
+      border-radius: inherit;
+    }
+
+    .tarot-card:hover:not(.disabled) {
+      transform: translateY(-8px) scale(1.03);
+      border-color: rgba(201,162,39,0.5);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(201,162,39,0.15);
+    }
+
+    .tarot-card.selected {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px var(--gold), 0 16px 40px rgba(201,162,39,0.3);
+      transform: translateY(-10px) scale(1.05);
+    }
+
+    .tarot-card.disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
+
+    .tarot-card.selected.disabled {
+      opacity: 1;
+    }
+
+    /* Face da carta (verso) */
+    .card-back {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem;
+    }
+
+    .card-back-symbol {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .tarot-card:hover:not(.disabled) .card-back-symbol { opacity: 1; }
+
+    .card-back-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      color: rgba(201,162,39,0.5);
+      letter-spacing: 0.15em;
+    }
+
+    /* Badge de selecionado */
+    .card-selected-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--dark);
+      font-weight: 700;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tarot-card.selected .card-selected-badge {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ========================
+       BOTÃO LEITURA
+    ======================== */
+    .reading-btn-wrap {
+      text-align: center;
+    }
+
+    .reading-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--gold);
+      border: none;
+      border-radius: 50px;
+      padding: 1rem 3rem;
+      cursor: pointer;
+      transition: all 0.4s;
+      box-shadow: 0 0 30px rgba(201,162,39,0.3);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .reading-btn.active {
+      opacity: 1;
+      pointer-events: all;
+      animation: readyPulse 2s ease-in-out infinite;
+    }
+
+    .reading-btn.active:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px rgba(201,162,39,0.7);
+      animation: none;
+    }
+
+    @keyframes readyPulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(201,162,39,0.3); }
+      50%       { box-shadow: 0 0 60px rgba(201,162,39,0.7); }
+    }
+
+    /* ========================
+       RESULTADO / MODAL
+    ======================== */
+    .result-section {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+      display: none;
+    }
+
+    .result-section.visible { display: block; }
+
+    .result-box {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,162,39,0.35);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .result-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .result-header .label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .result-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .result-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Cartas selecionadas no resultado */
+    .result-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .result-card-item {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .result-card-face {
+      width: 80px;
+      height: 120px;
+      border-radius: 8px;
+      background: var(--dark-mid);
+      border: 1px solid rgba(201,162,39,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      margin: 0 auto 0.5rem;
+      font-size: 2rem;
+    }
+
+    .result-card-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+
+    /* Interpretação */
+    .result-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1.5rem auto;
+    }
+
+    .result-text {
+      font-size: 0.95rem;
+      color: rgba(240,237,230,0.85);
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    .result-text p { margin-bottom: 1rem; }
+
+    .result-text .highlight {
+      color: var(--gold);
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    /* Botão de nova leitura */
+    .retry-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      border: 1px solid rgba(201,162,39,0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .retry-btn:hover {
+      border-color: var(--gold);
+      background: rgba(201,162,39,0.08);
+    }
+
+    /* Loading state */
+    .loading-wrap {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 2px solid rgba(201,162,39,0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ========================
+       FOOTER SIMPLES
+    ======================== */
+    footer {
+      background: #060916;
+      border-top: 1px solid rgba(201,162,39,0.1);
+      padding: 1.8rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      color: rgba(240,237,230,0.25);
+      letter-spacing: 0.08em;
+    }
+
+    /* ========================
+       WHATSAPP FIXO
+    ======================== */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.6);
+    }
+
+    .whatsapp-btn svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ========================
+       RESPONSIVO
+    ======================== */
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+      .result-box { padding: 1.8rem 1.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGAÇÃO -->
+  <nav>
+    <a href="index.html" class="nav-logo">✦ Consciência Curativa</a>
+    <a href="index.html" class="nav-back">← Voltar ao Início</a>
+  </nav>
+
+  <!-- CABEÇALHO -->
+  <header class="oracle-header">
+    <p class="section-label">✦ Consulta Espiritual ✦</p>
+    <h1>Oráculo <span>Sagrado</span></h1>
+    <p>Respire fundo, centre sua intenção e selecione três cartas.<br/>O universo tem uma mensagem para você.</p>
+  </header>
+
+  <!-- CONTADOR -->
+  <div class="selection-counter">
+    <div class="counter-pip" id="pip-1">1</div>
+    <div class="counter-pip" id="pip-2">2</div>
+    <div class="counter-pip" id="pip-3">3</div>
+    <span class="counter-label" id="counter-label">Selecione 3 cartas</span>
+  </div>
+
+  <!-- GRADE DE CARTAS -->
+  <div class="cards-section">
+    <div class="cards-grid" id="cards-grid">
+      <!-- Cartas geradas via JS -->
+    </div>
+
+    <div class="reading-btn-wrap">
+      <button class="reading-btn" id="reading-btn">
+        ✦ Revelar Minha Leitura
+      </button>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="result-section" id="result-section">
+    <div class="result-box">
+      <div class="result-header">
+        <p class="label">✦ Sua Leitura ✦</p>
+        <h2>Mensagem do Oráculo</h2>
+        <p id="result-cards-title"></p>
+      </div>
+
+      <!-- Cartas escolhidas -->
+      <div class="result-cards" id="result-cards-display"></div>
+
+      <div class="result-divider"></div>
+
+      <!-- Texto da leitura -->
+      <div class="result-text" id="result-text"></div>
+
+      <div style="text-align: center;">
+        <button class="retry-btn" id="retry-btn">↺ Nova Leitura</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Consciência Curativa — Tatiana Lara</p>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a
+    class="whatsapp-btn"
+    href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es"
+    target="_blank"
+    rel="noopener"
+    aria-label="WhatsApp"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <path d="M16 0C7.164 0 0 7.163 0 16c0 2.825.737 5.476 2.027 7.782L0 32l8.418-2.004A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.773-1.854l-.486-.29-5.003 1.19 1.227-4.862-.317-.5A13.253 13.253 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.897c-.398-.2-2.357-1.163-2.722-1.295-.366-.133-.633-.2-.9.2s-1.032 1.295-1.266 1.562c-.233.266-.466.3-.864.1-.398-.2-1.68-.619-3.2-1.974-1.183-1.055-1.982-2.357-2.214-2.756-.233-.4-.025-.615.175-.814.18-.179.398-.466.598-.699.2-.233.266-.4.4-.666.133-.266.066-.5-.033-.7-.1-.2-.9-2.165-1.232-2.963-.325-.78-.655-.674-.9-.686-.233-.011-.5-.013-.766-.013-.266 0-.7.1-1.066.5-.366.4-1.4 1.366-1.4 3.33s1.434 3.864 1.634 4.131c.2.266 2.82 4.302 6.831 6.032.956.413 1.701.66 2.283.844.959.305 1.832.262 2.522.159.769-.115 2.357-.963 2.69-1.894.333-.93.333-1.727.233-1.894-.1-.166-.366-.266-.766-.466z"/>
+    </svg>
+  </a>
+
+  <script>
+    // ========================
+    // DADOS DAS CARTAS
+    // ========================
+    const CARTAS = [
+      { id: 1,  nome: 'O Mago',         emoji: '🧙',  pos: 'Passado',  tema: 'Poder & Criação' },
+      { id: 2,  nome: 'A Sacerdotisa',  emoji: '🌙',  pos: 'Presente', tema: 'Intuição & Mistério' },
+      { id: 3,  nome: 'A Imperatriz',   emoji: '🌺',  pos: 'Futuro',   tema: 'Abundância & Fertilidade' },
+      { id: 4,  nome: 'O Imperador',    emoji: '👑',  pos: 'Passado',  tema: 'Autoridade & Estrutura' },
+      { id: 5,  nome: 'O Hierofante',   emoji: '🏛️', pos: 'Presente', tema: 'Tradição & Sabedoria' },
+      { id: 6,  nome: 'Os Amantes',     emoji: '💞',  pos: 'Futuro',   tema: 'União & Escolha' },
+      { id: 7,  nome: 'O Carro',        emoji: '⚡',  pos: 'Passado',  tema: 'Vitória & Determinação' },
+      { id: 8,  nome: 'A Força',        emoji: '🦁',  pos: 'Presente', tema: 'Coragem & Compaixão' },
+      { id: 9,  nome: 'O Eremita',      emoji: '🕯️', pos: 'Futuro',   tema: 'Reflexão & Busca Interior' },
+      { id: 10, nome: 'A Roda',         emoji: '☯️',  pos: 'Passado',  tema: 'Ciclos & Destino' },
+      { id: 11, nome: 'A Justiça',      emoji: '⚖️',  pos: 'Presente', tema: 'Equilíbrio & Verdade' },
+      { id: 12, nome: 'A Estrela',      emoji: '⭐',  pos: 'Futuro',   tema: 'Esperança & Renovação' },
+    ];
+
+    // Leituras pré-definidas por combinações de posição
+    const LEITURAS = [
+      {
+        titulo: 'Caminho de Luz',
+        intro: 'As três cartas falam em uníssono: você está em um momento de profunda transição. A energia que emerge é poderosa e transformadora.',
+        corpo: [
+          'Seu passado carrega as sementes do que hoje floresce. Cada experiência, cada dor e cada alegria foi necessária para moldar quem você é. Honre esse caminho — ele foi exatamente o que precisava ser.',
+          'No presente, você é convidado a confiar na sua sabedoria interior. A resposta que você busca já existe dentro de você. Silêncie o ruído externo e ouça a voz suave da sua essência.',
+          'O futuro que se desenha é de renovação e abundância. Novas portas se abrem para quem tem coragem de fechar capítulos que já cumpriram seu propósito. Confie no fluxo da vida.',
+        ],
+        encerramento: 'Lembre-se: você não está sozinho nessa jornada. O universo conspira a seu favor, guiando cada passo com amor e sabedoria infinita.',
+      },
+      {
+        titulo: 'Portal de Transformação',
+        intro: 'Estas cartas revelam um momento sagrado de mudança. O universo está realinhando forças ao seu redor para que você possa dar o próximo salto evolutivo.',
+        corpo: [
+          'Olhando para trás, perceba como cada obstáculo foi uma escola disfarçada. A força que você desenvolveu nessas travessias é o seu maior tesouro. Nada foi em vão.',
+          'Agora, no presente, é tempo de integração. Une os fragmentos do que você foi com a visão do que está se tornando. Essa síntese é sagrada e necessária.',
+          'O que vem pela frente pede que você abrace o desconhecido com abertura. A incerteza não é inimiga — é o útero de onde nascem as maiores possibilidades.',
+        ],
+        encerramento: 'Confie na sua intuição acima de tudo. Ela é a bússola que sempre aponta para o seu verdadeiro norte.',
+      },
+      {
+        titulo: 'Harmonia Divina',
+        intro: 'Uma tríade poderosa se revela em sua leitura. Passado, presente e futuro dançam em harmonia, mostrando que você está exatamente onde precisa estar.',
+        corpo: [
+          'Seu passado foi escola de resiliência e autoconhecimento. As experiências difíceis ensinaram você a encontrar luz nas sombras — uma habilidade rara e preciosa.',
+          'No presente, a chave está no equilíbrio: entre dar e receber, entre agir e descansar, entre confiar e questionar. Encontre esse ponto de paz dentro de você.',
+          'Seu futuro resplandece com possibilidades. Uma nova fase se inicia — mais alinhada com quem você verdadeiramente é. O melhor ainda está por vir.',
+        ],
+        encerramento: 'Você é um ser de luz em jornada de expansão. Cada dia é uma nova oportunidade de viver com mais autenticidade, amor e consciência.',
+      },
+    ];
+
+    // ========================
+    // ESTADO
+    // ========================
+    let selecionadas = [];
+    let leituraBloqueada = false;
+
+    // ========================
+    // RENDERIZAR CARTAS
+    // ========================
+    function renderCartas() {
+      const grid = document.getElementById('cards-grid');
+      grid.innerHTML = '';
+
+      CARTAS.forEach(carta => {
+        const div = document.createElement('div');
+        div.className = 'tarot-card';
+        div.dataset.id = carta.id;
+        div.setAttribute('role', 'button');
+        div.setAttribute('aria-label', `Carta ${carta.id}`);
+        div.setAttribute('tabindex', '0');
+
+        div.innerHTML = `
+          <div class="card-back">
+            <span class="card-back-symbol">✦</span>
+            <span class="card-back-num">— ${carta.id.toString().padStart(2,'0')} —</span>
+          </div>
+          <div class="card-selected-badge" aria-hidden="true"></div>
+        `;
+
+        div.addEventListener('click', () => selecionarCarta(carta.id, div));
+        div.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') selecionarCarta(carta.id, div);
+        });
+
+        grid.appendChild(div);
+      });
+    }
+
+    // ========================
+    // SELECIONAR CARTA
+    // ========================
+    function selecionarCarta(id, el) {
+      if (leituraBloqueada) return;
+      if (el.classList.contains('disabled') && !el.classList.contains('selected')) return;
+
+      if (el.classList.contains('selected')) {
+        // Desselecionar
+        el.classList.remove('selected');
+        selecionadas = selecionadas.filter(s => s !== id);
+        el.querySelector('.card-selected-badge').textContent = '';
+      } else {
+        if (selecionadas.length >= 3) return;
+        selecionadas.push(id);
+        el.classList.add('selected');
+        el.querySelector('.card-selected-badge').textContent = selecionadas.length;
+      }
+
+      atualizarUI();
+    }
+
+    // ========================
+    // ATUALIZAR UI
+    // ========================
+    function atualizarUI() {
+      const n = selecionadas.length;
+
+      // Pips
+      [1,2,3].forEach(i => {
+        const pip = document.getElementById(`pip-${i}`);
+        if (i <= n) pip.classList.add('filled');
+        else pip.classList.remove('filled');
+      });
+
+      // Label
+      const label = document.getElementById('counter-label');
+      if (n === 0) label.textContent = 'Selecione 3 cartas';
+      else if (n === 1) label.textContent = 'Selecione mais 2 cartas';
+      else if (n === 2) label.textContent = 'Selecione mais 1 carta';
+      else label.textContent = '✦ Pronto para revelar!';
+
+      // Desabilitar cartas não selecionadas quando chegar a 3
+      document.querySelectorAll('.tarot-card').forEach(card => {
+        const id = parseInt(card.dataset.id);
+        if (n >= 3 && !selecionadas.includes(id)) {
+          card.classList.add('disabled');
+        } else {
+          card.classList.remove('disabled');
+        }
+      });
+
+      // Botão leitura
+      const btn = document.getElementById('reading-btn');
+      if (n === 3) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
+
+    // ========================
+    // EXIBIR LEITURA
+    // ========================
+    function exibirLeitura() {
+      if (selecionadas.length < 3) return;
+
+      leituraBloqueada = true;
+
+      const resultSection = document.getElementById('result-section');
+      resultSection.classList.add('visible');
+      resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Mostrar loading por 1.5s
+      document.getElementById('result-cards-title').textContent = '';
+      document.getElementById('result-cards-display').innerHTML = `
+        <div class="loading-wrap">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">O oráculo consulta os astros...</p>
+        </div>
+      `;
+      document.getElementById('result-text').innerHTML = '';
+
+      setTimeout(() => {
+        const cartasSelecionadas = selecionadas.map(id => CARTAS.find(c => c.id === id));
+        const leitura = LEITURAS[Math.floor(Math.random() * LEITURAS.length)];
+
+        // Título
+        document.getElementById('result-cards-title').textContent =
+          cartasSelecionadas.map(c => c.nome).join(' · ');
+
+        // Cartas visuais
+        document.getElementById('result-cards-display').innerHTML = cartasSelecionadas.map((carta, i) => {
+          const posLabels = ['Passado', 'Presente', 'Futuro'];
+          return `
+            <div class="result-card-item">
+              <div class="result-card-face">
+                <span style="font-size: 2rem;">${carta.emoji}</span>
+              </div>
+              <p class="result-card-name">${carta.nome}</p>
+              <p style="font-size:0.7rem; color: var(--text-muted); margin-top: 2px;">${posLabels[i]}</p>
+            </div>
+          `;
+        }).join('');
+
+        // Texto da leitura
+        const textoHTML = `
+          <p><span class="highlight">${leitura.titulo}</span></p>
+          <p>${leitura.intro}</p>
+          ${leitura.corpo.map(p => `<p>${p}</p>`).join('')}
+          <p style="margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(201,162,39,0.15); font-style: italic; color: var(--gold);">
+            "${leitura.encerramento}"
+          </p>
+        `;
+        document.getElementById('result-text').innerHTML = textoHTML;
+
+      }, 1800);
+    }
+
+    // ========================
+    // NOVA LEITURA
+    // ========================
+    function novaLeitura() {
+      selecionadas = [];
+      leituraBloqueada = false;
+      document.getElementById('result-section').classList.remove('visible');
+      renderCartas();
+      atualizarUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ========================
+    // EVENTOS
+    // ========================
+    document.getElementById('reading-btn').addEventListener('click', exibirLeitura);
+    document.getElementById('retry-btn').addEventListener('click', novaLeitura);
+
+    // ========================
+    // INIT
+    // ========================
+    renderCartas();
+    atualizarUI();
+  </script>
+</body>
+</html>

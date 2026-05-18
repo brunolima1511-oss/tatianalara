@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consciência Curativa — Oráculo Sagrado</title>
+  <meta name="description" content="Orientações sagradas para seu caminho espiritual. Frequência Schumann em tempo real, oráculo de cartas e muito mais." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========================
+       RESET & VARIÁVEIS
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #C9A227;
+      --gold-light:  #E8C84A;
+      --gold-dim:    #8a6c15;
+      --dark:        #0A0E27;
+      --dark-mid:    #0e1335;
+      --dark-card:   #111830;
+      --white:       #FFFFFF;
+      --off-white:   #F0EDE6;
+      --text-muted:  #a09880;
+      --green-wa:    #25D366;
+      --red:         #FF6B6B;
+      --orange:      #FFA500;
+      --yellow:      #FFD700;
+      --green:       #52D273;
+      --blue:        #4169E1;
+      --purple:      #9370DB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--dark);
+      color: var(--off-white);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ========================
+       ESTRELAS DE FUNDO
+    ======================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(201,162,39,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 40% 5%, rgba(201,162,39,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 20%, rgba(201,162,39,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 90%, rgba(201,162,39,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 45%, rgba(201,162,39,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 35% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 50%, rgba(201,162,39,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 48% 88%, rgba(201,162,39,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 20% 25%, rgba(201,162,39,0.3) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+      animation: twinkle 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.4; }
+      50%  { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+
+    /* ========================
+       NAVEGAÇÃO
+    ======================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,14,39,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,162,39,0.2);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--off-white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.3s;
+    }
+
+    /* ========================
+       HERO SECTION
+    ======================== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: 1;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,14,39,0.75) 0%,
+        rgba(10,14,39,0.55) 50%,
+        rgba(10,14,39,0.85) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,162,39,0.4);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      text-shadow: 0 0 40px rgba(201,162,39,0.3);
+    }
+
+    .hero-title span { color: var(--gold); }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: rgba(240,237,230,0.8);
+      font-style: italic;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(201,162,39,0.4);
+    }
+
+    .hero-cta:hover {
+      background: var(--gold-light);
+      box-shadow: 0 0 50px rgba(201,162,39,0.7);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(201,162,39,0.6);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll svg { width: 20px; height: 20px; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ========================
+       SEÇÕES GERAIS
+    ======================== */
+    section { position: relative; z-index: 1; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--white);
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.2rem 0 2.5rem;
+    }
+
+    /* ========================
+       FREQUÊNCIA SCHUMANN
+    ======================== */
+    #schumann {
+      background: linear-gradient(180deg, var(--dark) 0%, var(--dark-mid) 100%);
+    }
+
+    .schumann-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .schumann-display {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,162,39,0.25);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .schumann-display::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(201,162,39,0.5), transparent, rgba(201,162,39,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .schumann-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .schumann-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .schumann-number {
+      font-family: 'Cinzel', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(201,162,39,0.5);
+      transition: all 0.5s ease;
+    }
+
+    .schumann-unit {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: var(--gold-dim);
+      margin-bottom: 1.2rem;
+    }
+
+    .schumann-pulse {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-bottom: 1rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.6); }
+    }
+
+    .schumann-state {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--off-white);
+      font-size: 1rem;
+      min-height: 1.5rem;
+      transition: opacity 0.5s;
+    }
+
+    .schumann-info h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .schumann-info p {
+      color: rgba(240,237,230,0.75);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .schumann-ranges {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .schumann-ranges li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.88rem;
+      color: rgba(240,237,230,0.7);
+    }
+
+    .range-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ========================
+       CAROUSEL
+    ======================== */
+    #carousel-section {
+      background: var(--dark-mid);
+    }
+
+    .carousel-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 16/7;
+      max-height: 480px;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .carousel-slide.active { opacity: 1; }
+
+    .carousel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(10,14,39,0.85) 100%);
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 2rem;
+      left: 2.5rem;
+      z-index: 2;
+    }
+
+    .carousel-caption h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--white);
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .carousel-caption p {
+      color: rgba(240,237,230,0.75);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+      z-index: 3;
+    }
+
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(10,14,39,0.7);
+      border: 1px solid rgba(201,162,39,0.4);
+      color: var(--gold);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(201,162,39,0.2);
+      border-color: var(--gold);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(201,162,39,0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* ========================
+       CARDS DE ORIENTAÇÃO
+    ======================== */
+    #orientacoes {
+      background: linear-gradient(180deg, var(--dark-mid) 0%, var(--dark) 100%);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card-item {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,162,39,0.15);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .card-item:nth-child(1)::before { background: linear-gradient(90deg, var(--purple), transparent); }
+    .card-item:nth-child(2)::before { background: linear-gradient(90deg, var(--blue), transparent); }
+    .card-item:nth-child(3)::before { background: linear-gradient(90deg, var(--gold), transparent); }
+
+    .card-item:hover {
+      border-color: rgba(201,162,39,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      color: rgba(240,237,230,0.7);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ========================
+       SEÇÃO ORÁCULO CTA
+    ======================== */
+    #oracle-cta {
+      background: var(--dark);
+    }
+
+    .oracle-cta-box {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,162,39,0.3);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .oracle-cta-box::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(201,162,39,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .oracle-cta-box .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .oracle-cta-box p {
+      color: rgba(240,237,230,0.7);
+      font-weight: 300;
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+      font-style: italic;
+    }
+
+    /* ========================
+       SOBRE / BIO
+    ======================== */
+    #sobre {
+      background: linear-gradient(180deg, var(--dark) 0%, var(--dark-mid) 100%);
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .sobre-img-wrap {
+      position: relative;
+    }
+
+    .sobre-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .sobre-img-border {
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(201,162,39,0.3);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .sobre-img-corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+
+    .sobre-img-corner.tl { top: -12px; left: -12px; border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
+    .sobre-img-corner.tr { top: -12px; right: -12px; border-width: 2px 2px 0 0; border-radius: 0 4px 0 0; }
+    .sobre-img-corner.bl { bottom: -12px; left: -12px; border-width: 0 0 2px 2px; border-radius: 0 0 0 4px; }
+    .sobre-img-corner.br { bottom: -12px; right: -12px; border-width: 0 2px 2px 0; border-radius: 0 0 4px 0; }
+
+    .sobre-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+
+    .sobre-text p {
+      color: rgba(240,237,230,0.75);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    /* ========================
+       CONTATO
+    ======================== */
+    #contato {
+      background: var(--dark-mid);
+    }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .contato-card {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,162,39,0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .contato-card:hover {
+      border-color: rgba(201,162,39,0.35);
+      transform: translateY(-4px);
+    }
+
+    .contato-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .contato-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .contato-card p {
+      font-size: 0.88rem;
+      color: rgba(240,237,230,0.65);
+    }
+
+    /* ========================
+       FOOTER
+    ======================== */
+    footer {
+      background: #060916;
+      border-top: 1px solid rgba(201,162,39,0.15);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(240,237,230,0.5);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      color: rgba(240,237,230,0.3);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ========================
+       BOTÃO WHATSAPP FIXO
+    ======================== */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--green-wa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.6);
+    }
+
+    .whatsapp-btn svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+
+    /* ========================
+       UTILITÁRIOS
+    ======================== */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 24px rgba(201,162,39,0.3);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      box-shadow: 0 0 40px rgba(201,162,39,0.6);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 1px solid rgba(201,162,39,0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(201,162,39,0.08);
+    }
+
+    /* ========================
+       RESPONSIVO
+    ======================== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0; right: 0;
+        background: rgba(10,14,39,0.98);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid rgba(201,162,39,0.2);
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+
+      .schumann-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .sobre-grid { grid-template-columns: 1fr; }
+      .contato-grid { grid-template-columns: 1fr; }
+
+      .carousel-wrap { aspect-ratio: 4/3; }
+
+      #hero { background-attachment: scroll; }
+
+      .oracle-cta-box { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGAÇÃO -->
+  <nav>
+    <a href="#" class="nav-logo">✦ Consciência Curativa</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="oracle.html">Oráculo</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">✦ Oráculo Sagrado ✦</div>
+      <h1 class="hero-title">
+        Transformação Consciencial<br />
+        com <span>Harmonia Divina</span>
+      </h1>
+      <p class="hero-subtitle">
+        Orientações sagradas para o seu caminho espiritual
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="oracle.html" class="hero-cta">
+          ✦ Consultar Oráculo
+        </a>
+        <a href="#schumann" class="btn-outline">
+          Ver Frequência
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+      </svg>
+      Explorar
+    </div>
+  </section>
+
+  <!-- FREQUÊNCIA SCHUMANN -->
+  <section id="schumann">
+    <div class="section-inner">
+      <div class="schumann-grid">
+        <!-- Display numérico -->
+        <div class="schumann-display">
+          <div class="schumann-glow"></div>
+          <p class="schumann-label">⊕ Frequência Schumann</p>
+          <div class="schumann-number" id="freq-value">7.83</div>
+          <div class="schumann-unit">Hz</div>
+          <div class="schumann-pulse"></div>
+          <p class="schumann-state" id="freq-state">Calma profunda e meditação</p>
+        </div>
+
+        <!-- Informações -->
+        <div class="schumann-info">
+          <div class="section-label">em tempo real</div>
+          <h2 class="section-title">Pulso da Terra</h2>
+          <div class="section-divider"></div>
+          <p>
+            A frequência Schumann é a ressonância eletromagnética da Terra — o ritmo
+            do planeta ao qual todo ser vivo está sintonizado. Fique em harmonia com
+            essa vibração sagrada.
+          </p>
+          <p>
+            O valor base é 7,83 Hz, mas oscila naturalmente ao longo do dia conforme
+            a atividade ionosférica global.
+          </p>
+          <ul class="schumann-ranges">
+            <li>
+              <span class="range-dot" style="background: var(--purple)"></span>
+              &lt; 6 Hz — Profunda calma e meditação
+            </li>
+            <li>
+              <span class="range-dot" style="background: var(--blue)"></span>
+              6–8 Hz — Criatividade e intuição despertando
+            </li>
+            <li>
+              <span class="range-dot" style="background: var(--gold)"></span>
+              8–10 Hz — Clareza mental e consciência expandida
+            </li>
+            <li>
+              <span class="range-dot" style="background: var(--orange)"></span>
+              10+ Hz — Energia elevada e ativação divina
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL -->
+  <section id="carousel-section">
+    <div class="section-inner">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="section-label">galeria sagrada</div>
+        <h2 class="section-title">Caminhos de Luz</h2>
+        <div class="section-divider" style="margin: 1rem auto;"></div>
+      </div>
+      <div class="carousel-wrap" id="carousel">
+        <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=80')">
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption">
+            <h3>Silêncio da Montanha</h3>
+            <p>Onde o espírito encontra sua morada</p>
+          </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1280&q=80')">
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption">
+            <h3>Equilíbrio Interior</h3>
+            <p>Corpo, mente e alma em harmonia</p>
+          </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1280&q=80')">
+          <div class="carousel-overlay"></div>
+          <div class="carousel-caption">
+            <h3>Presença Plena</h3>
+            <p>A natureza como espelho da alma</p>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prev-btn" aria-label="Anterior">&#8249;</button>
+          <button class="carousel-btn" id="next-btn" aria-label="Próximo">&#8250;</button>
+        </div>
+      </div>
+
+      <div class="carousel-dots">
+        <button class="carousel-dot active" data-idx="0" aria-label="Slide 1"></button>
+        <button class="carousel-dot" data-idx="1" aria-label="Slide 2"></button>
+        <button class="carousel-dot" data-idx="2" aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIENTAÇÕES -->
+  <section id="orientacoes">
+    <div class="section-inner">
+      <div class="section-label">mensagens do universo</div>
+      <h2 class="section-title">Orientações para o Momento</h2>
+      <div class="section-divider"></div>
+
+      <div class="cards-grid">
+        <div class="card-item">
+          <span class="card-icon">🌙</span>
+          <h3 class="card-title">Sabedoria do Dia</h3>
+          <p class="card-text">
+            Cada momento é uma oportunidade de expansão.
+            Confie no processo divino de sua evolução e deixe
+            a luz interior guiar cada passo do seu caminho.
+          </p>
+        </div>
+
+        <div class="card-item">
+          <span class="card-icon">✨</span>
+          <h3 class="card-title">Mensagem Espiritual</h3>
+          <p class="card-text">
+            Sua energia é sagrada. Cultive a paz interior
+            e veja o mundo se transformar ao seu redor.
+            Você é um portal de amor e cura.
+          </p>
+        </div>
+
+        <div class="card-item">
+          <span class="card-icon">🔮</span>
+          <h3 class="card-title">Guia do Momento</h3>
+          <p class="card-text">
+            Conecte-se com sua essência mais profunda.
+            O oráculo sagrado aguarda suas perguntas —
+            o universo já tem as respostas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA ORÁCULO -->
+  <section id="oracle-cta">
+    <div class="section-inner">
+      <div class="oracle-cta-box">
+        <div class="section-label">consulta espiritual</div>
+        <h2 class="section-title">O Oráculo Aguarda</h2>
+        <p>
+          Selecione três cartas e receba uma orientação personalizada
+          para o seu momento presente. A sabedoria do universo
+          fala através de cada símbolo.
+        </p>
+        <a href="oracle.html" class="btn-gold">✦ Iniciar Leitura</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="section-inner">
+      <div class="sobre-grid">
+        <div class="sobre-img-wrap">
+          <img
+            class="sobre-img"
+            src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&q=80"
+            alt="Tatiana Lara — Terapeuta Espiritual"
+          />
+          <div class="sobre-img-border"></div>
+          <div class="sobre-img-corner tl"></div>
+          <div class="sobre-img-corner tr"></div>
+          <div class="sobre-img-corner bl"></div>
+          <div class="sobre-img-corner br"></div>
+        </div>
+
+        <div class="sobre-text">
+          <div class="section-label">sobre</div>
+          <h2 class="section-title">Tatiana Lara</h2>
+          <div class="section-divider"></div>
+          <p>
+            Há mais de uma década caminhando no universo das terapias holísticas
+            e espiritualidade, Tatiana dedica sua vida a guiar almas em processos
+            de cura, autoconhecimento e expansão de consciência.
+          </p>
+          <p>
+            Especialista em leitura de cartas, frequências energéticas e
+            harmonização vibracional, ela combina sabedoria ancestral com
+            ferramentas contemporâneas de bem-estar.
+          </p>
+          <p>
+            Cada sessão é um espaço sagrado de acolhimento, onde o ser humano
+            é visto em sua integralidade — corpo, mente e espírito.
+          </p>
+          <a href="#contato" class="btn-outline" style="margin-top: 0.5rem;">
+            Agendar Consulta →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="section-inner">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <div class="section-label">entre em contato</div>
+        <h2 class="section-title">Inicie sua Jornada</h2>
+        <div class="section-divider" style="margin: 1rem auto;"></div>
+      </div>
+
+      <div class="contato-grid">
+        <div class="contato-card">
+          <span class="contato-icon">💬</span>
+          <h3>WhatsApp</h3>
+          <p>Atendimento rápido pelo WhatsApp para agendamentos e dúvidas</p>
+          <br />
+          <a href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20espiritual" class="btn-gold" style="font-size:0.78rem; padding: 0.6rem 1.4rem;" target="_blank">
+            Chamar no WhatsApp
+          </a>
+        </div>
+
+        <div class="contato-card">
+          <span class="contato-icon">🌟</span>
+          <h3>Consulta Online</h3>
+          <p>Sessões via videoconferência para todo o Brasil e exterior</p>
+          <br />
+          <a href="oracle.html" class="btn-outline" style="font-size:0.78rem; padding: 0.6rem 1.4rem;">
+            Consultar Oráculo
+          </a>
+        </div>
+
+        <div class="contato-card">
+          <span class="contato-icon">✉️</span>
+          <h3>E-mail</h3>
+          <p>Para parcerias, imprensa e informações detalhadas sobre os serviços</p>
+          <br />
+          <p style="color: var(--gold); font-size: 0.85rem;">contato@tatianalara.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-logo">✦ Consciência Curativa</p>
+    <ul class="footer-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="oracle.html">Oráculo</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <p class="footer-copy">
+      © 2026 Consciência Curativa — Tatiana Lara. Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <!-- BOTÃO WHATSAPP FIXO -->
+  <a
+    class="whatsapp-btn"
+    href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es"
+    target="_blank"
+    rel="noopener"
+    aria-label="Falar pelo WhatsApp"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <path d="M16 0C7.164 0 0 7.163 0 16c0 2.825.737 5.476 2.027 7.782L0 32l8.418-2.004A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.773-1.854l-.486-.29-5.003 1.19 1.227-4.862-.317-.5A13.253 13.253 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.897c-.398-.2-2.357-1.163-2.722-1.295-.366-.133-.633-.2-.9.2s-1.032 1.295-1.266 1.562c-.233.266-.466.3-.864.1-.398-.2-1.68-.619-3.2-1.974-1.183-1.055-1.982-2.357-2.214-2.756-.233-.4-.025-.615.175-.814.18-.179.398-.466.598-.699.2-.233.266-.4.4-.666.133-.266.066-.5-.033-.7-.1-.2-.9-2.165-1.232-2.963-.325-.78-.655-.674-.9-.686-.233-.011-.5-.013-.766-.013-.266 0-.7.1-1.066.5-.366.4-1.4 1.366-1.4 3.33s1.434 3.864 1.634 4.131c.2.266 2.82 4.302 6.831 6.032.956.413 1.701.66 2.283.844.959.305 1.832.262 2.522.159.769-.115 2.357-.963 2.69-1.894.333-.93.333-1.727.233-1.894-.1-.166-.366-.266-.766-.466z"/>
+    </svg>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script>
+    // ========================
+    // MENU MOBILE
+    // ========================
+    const toggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // ========================
+    // FREQUÊNCIA SCHUMANN
+    // ========================
+    function updateSchumann() {
+      const base = 7.83;
+      const variation = Math.sin(Date.now() / 1000) * 2;
+      const freq = base + variation;
+      const display = freq.toFixed(2);
+
+      const el = document.getElementById('freq-value');
+      const state = document.getElementById('freq-state');
+
+      el.textContent = display;
+
+      let msg = '';
+      if (freq < 6) {
+        msg = 'Profunda calma e meditação';
+        el.style.color = '#9370DB';
+      } else if (freq < 8) {
+        msg = 'Criatividade e intuição despertando';
+        el.style.color = '#4169E1';
+      } else if (freq < 10) {
+        msg = 'Clareza mental e consciência expandida';
+        el.style.color = '#C9A227';
+      } else {
+        msg = 'Energia elevada e ativação divina';
+        el.style.color = '#FFA500';
+      }
+
+      state.style.opacity = '0';
+      setTimeout(() => {
+        state.textContent = msg;
+        state.style.opacity = '1';
+      }, 250);
+    }
+
+    updateSchumann();
+    setInterval(updateSchumann, 2000);
+
+    // ========================
+    // CAROUSEL
+    // ========================
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    function goTo(idx) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (idx + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => goTo(currentSlide + 1));
+    document.getElementById('prev-btn').addEventListener('click', () => goTo(currentSlide - 1));
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goTo(parseInt(dot.dataset.idx)));
+    });
+
+    let autoSlide = setInterval(() => goTo(currentSlide + 1), 5000);
+
+    document.getElementById('carousel').addEventListener('mouseenter', () => clearInterval(autoSlide));
+    document.getElementById('carousel').addEventListener('mouseleave', () => {
+      autoSlide = setInterval(() => goTo(currentSlide + 1), 5000);
+    });
+  </script>
+</body>
+</html>
